@@ -1,5 +1,7 @@
 # Alpha-Coin Wallet
 
+[![CircleCI](https://circleci.com/gh/sharstream/alpha-coin-wallet/tree/backend-alpha-bitcoin.svg?style=svg)](https://circleci.com/gh/sharstream/alpha-coin-wallet/tree/backend-alpha-bitcoin)
+
 Alpha-Coin Wallet is a Bitcoin transaction and wallet management platform.
 
 Contributors:
