@@ -9,13 +9,15 @@ if (result.error) {
 
 const Client = require('coinbase').Client;
 
-var transaction = require('./transactions-helper');
+let transaction = require('./transactions-helper');
 
+let account;
 // Startup jobs
 
 const client = new Client({
     apiKey: process.env.COINBASE_APIKEY_ID,
-    apiSecret: process.env.COINBASE_APIKEY_SECRET
+    apiSecret: process.env.COINBASE_APIKEY_SECRET,
+    'version': '2018-03-31'
 });
 
 var getAccounts = function(){
@@ -31,7 +33,7 @@ var getAccounts = function(){
                     +'. Current balance: ' + account.balance.amount +
                     +' ' + account.currency + '.');
 
-                console.log('Doanloading inital list of transactions.');
+                console.log('Downloading inital list of transactions.');
 
                 transaction.updateTransactions(err => {
                     if (err) {
@@ -40,6 +42,12 @@ var getAccounts = function(){
                 });
             }
         });
+    });
+
+    //create new wallet
+    client.createAccount({'name': 'New Wallet'}, (err, acct) => {
+        account = acct;
+        console.log(acct.name + ': ' + acct.balance.amount + ' ' + acct.balance.currency);
     });
 }
 
