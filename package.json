@@ -29,6 +29,7 @@
     "homepage": "https://github.com/sharstream/alpha-coin-wallet#readme",
     "dependencies": {
         "@okta/oidc-middleware": "^0.1.2",
+        "async": "^2.6.1",
         "body-parser": "^1.18.3",
         "chai": "^4.1.2",
         "coinbase": "^2.0.8",

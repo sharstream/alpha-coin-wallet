@@ -1,16 +1,8 @@
 "use strict";
 
-const dotenv = require('dotenv')
+require('./controllers/accounts-helper');
 
-const result = dotenv.config();
-
-if (result.error) {
-    throw result.error;
-}
-
-const Client = require('coinbase').Client;
-
-const async = require('async');
+require('./controllers/transactions-helper');
 
 const bodyParser = require('body-parser');
 
@@ -34,22 +26,17 @@ const PORT = process.env.PORT || '3000';
 
 const SECRET = process.env.SECRET;
 
-const client = new Client({
-    apiKey: process.env.COINBASE_APIKEY_ID,
-    apiSecret: process.env.COINBASE_APIKEY_SECRET
-});
-
-let account;
-
-let transactions;
-
 let app = express();
 
 // App settings
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(bodyParser.json());
+
 app.set('view engine', 'pug');
 
 //App middleware
-app.use('/static', express.static('static'));
+app.use(express.static('public'));
 
 app.use(session({
     cookie: {httpOnly: true},
