@@ -1,8 +1,8 @@
 "use strict";
 
-require('./controllers/accounts-helper');
+let account = require('./controllers/accounts-helper');
 
-require('./controllers/transactions-helper');
+let transaction = require('./controllers/transactions-helper');
 
 const bodyParser = require('body-parser');
 
@@ -10,23 +10,15 @@ const express = require('express');
 
 const session = require('express-session');
 
-const ExpressOIDC = require('@okta/oidc-middleware').ExpressOIDC;
-
 // Globals
-
-const OKTA_ISSUER_URI = process.env.OKTA_ISSUER_URI;
-
-const OKTA_CLIENT_ID = process.env.OKTA_CLIENT_ID;
-
-const OKTA_CLIENT_SECRET = process.env.OKTA_CLIENT_SECRET;
-
-const REDIRECT_URI = process.env.REDIRECT_URI;
 
 const PORT = process.env.PORT || '3000';
 
 const SECRET = process.env.SECRET;
 
 let app = express();
+
+let db = require('./models');
 
 // App settings
 app.use(bodyParser.urlencoded({extended: true}));
@@ -38,23 +30,40 @@ app.set('view engine', 'pug');
 //App middleware
 app.use(express.static('public'));
 
+// App routes
+var api_account_routes = require('./routes/api-accounts-routes.js')(app);
+
+var api_transaction_routes = require('./routes/api-transactions-routes.js');
+
 app.use(session({
     cookie: {httpOnly: true},
     secret: SECRET
 }));
 
-//Authentication
-let oidc = new ExpressOIDC({
-    issuer: OKTA_ISSUER_URI,
-    client_id: OKTA_CLIENT_ID,
-    client_secret: OKTA_CLIENT_SECRET,
-    redirect_uri: REDIRECT_URI,
-    routes: { callback: {defaultRedirect: '/dashboard'} },
-    scope: 'openid profile'
+app.use(api_transaction_routes.oidc.router);
+
+//Cron jobs
+// run node.js process to update the cache of
+// transaction data once per hour (in milliseconds)
+setInterval(() => {
+    transaction.updateTransactions(err => {
+        if (err) {
+            console.error(err);
+        }
+    })
+}, 1000 * 60 * 60);
+
+//Server management
+api_transaction_routes.oidc.on('ready', () => {
+    db.sequelize.sync({
+        force: true
+    }).then(function() {
+        app.listen(PORT, () => {
+            console.log(`Listening web service on port ` + PORT);
+        });
+    });
 });
 
-app.use(oidc.router);
-
-app.listen(PORT, () => {
-    console.log(`Listening web service on port ` + PORT);
+api_transaction_routes.oidc.on('error', err => {
+    console.error(err);
 });
