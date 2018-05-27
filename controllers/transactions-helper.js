@@ -1,45 +1,79 @@
 // Helpers
 const async = require('async');
 
-let account = require('./accounts-helper');;
+// Startup jobs
 
-let transactions;
+module.exports = function(client, transactions){
 
-// update transaction helpers
-var updateTransactions = function (cb) {
-    transactions = [];
-    let pagination = null;
-    // a callback which is called after the test function has failed and repeated
-    // execution of iteratee has stopped. callback will be passed an error and
-    // any arguments passed to the final iteratee's callback. Invoked with (err, [results])
-    async.doWhilst(
-        function (callback) {
-            account.getTransactions(pagination, (err, txns, page) => {
+    let account;
+    // update transaction helpers
+
+    function updateTransactions(cb) {
+        transactions = [];
+        let pagination = null;
+
+        async.doWhilst(
+            function (callback) {
+                account.getTransactions(pagination, (err, txns, page) => {
+                    if (err) {
+                        return callback(err);
+                    }
+
+                    pagination = page.next_uri ? page : false;
+
+                    txns.forEach(txn => {
+                        if (txn.type === "request") {
+                            transactions.push(txn);
+                        }
+                    });
+
+                    callback();
+                });
+            },
+            function () {
+                return pagination ? true : false;
+            },
+            function (err) {
                 if (err) {
-                    return callback(err);
+                    return cb(err);
                 }
 
-                pagination = page.next_uri ? page : false;
+                cb(null, transactions);
+            }
+        );
+    }
 
-                txns.forEach(txn => {
-                    if (txn.type === 'request') {
-                        transactions.push(txn);
+    //Cron jobs
+    // run node.js process to update the cache of
+    // transaction data once per hour (in milliseconds)
+    setInterval(() => {
+        updateTransactions(err => {
+            if (err) {
+                console.error(err);
+            }
+        })
+    }, 1000 * 60 * 60);
+
+    client.getAccounts({}, (err, accounts) => {
+        if (err) {
+            console.error(err);
+        }
+
+        accounts.forEach(acct => {
+            if (acct.primary) {
+                account = acct;
+                console.log("Found primary account: " + account.name + ". Current balance: " + account.balance.amount + " " + account.currency + ".");
+
+                console.log("Downloading initial list of transactions.");
+                updateTransactions(err => {
+                    if (err) {
+                        console.error(err);
                     }
                 });
-
-                callback();
-            });
-        },
-        function () {
-            return pagination ? true : false;
-        },
-        function(err){
-            if (err) {
-                return cb(err);
             }
-
-            cb(null, transactions);
         });
-};
+    });
 
-module.exports = updateTransactions;
+    return transactions;
+
+};
