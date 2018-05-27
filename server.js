@@ -8,7 +8,7 @@ const pug = require('pug');
 const express = require('express');
 const session = require('express-session');
 const async = require('async');
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
 const result = dotenv.config();
 const Client = require('coinbase').Client;
 const ExpressOIDC = require('@okta/oidc-middleware').ExpressOIDC;
@@ -40,10 +40,11 @@ let db = require('./models');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
 
 //App middleware
 app.use("/public", express.static('public'));
-app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
     cookie: {httpOnly: true},
@@ -80,7 +81,7 @@ app.get('/dashboard', oidc.ensureAuthenticated(), (req, res) => {
     });
 });
 
-app.post('/dashboard', oidc.ensureAuthenticated(), bodyParser.urlencoded(), (req, res) => {
+app.post('/dashboard', oidc.ensureAuthenticated(), (req, res) => {
     account.requestMoney({
         to: req.body.email,
         amount: req.body.amount,
