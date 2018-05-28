@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/sharstream/alpha-coin-wallet/tree/backend-alpha-bitcoin.svg?style=svg)](https://circleci.com/gh/sharstream/alpha-coin-wallet/tree/backend-alpha-bitcoin)
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sharstream/alpha-coin-wallet)
 
 Alpha-Coin Wallet is a Bitcoin transaction and wallet management platform.
 
