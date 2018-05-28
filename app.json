@@ -6,8 +6,9 @@
     "keywords": [
         "node",
         "express",
-        "public"
+        "heroku"
     ],
+    "images": "heroku/nodejs",
     "addons": [
         "JawsDB MySQL",
         "Mailgun"
