@@ -2,10 +2,9 @@ extends base.pug
 
 block body
 
-    script(src="../public/js/sorttable.js")
-    script(src="../public/css/style.css")
+    script(src="/public/js/sorttable.js")
 
-    ul.nav.nav-pills.justify-content-extends
+    ul.nav.nav-pills.justify-content-end
         li.nav-item
             a.nav-link.active(href="/") Home
             li.nav-item
@@ -19,9 +18,9 @@ block body
         .col-6
             .jumbotron
                 if error
-                    p.error #[error]
+                    p.error #{error}
 
-                .form.form(method="post")
+                form.form(method="post")
                     .form-group
                         label(for="email") To
                         input#email.form-control(type="email", placeholder="Client Email", name="email", required=true)

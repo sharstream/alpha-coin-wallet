@@ -1,17 +1,17 @@
 "use strict";
 
-// const account = require('./controllers/accounts-helper');
-// const transaction = require('./controllers/transactions-helper');
-const bodyParser = require('body-parser');
-const path = require('path');
-const pug = require('pug');
-const express = require('express');
-const session = require('express-session');
-const async = require('async');
-const dotenv = require('dotenv');
+// const account = require("./controllers/accounts-helper");
+// const transaction = require("./controllers/transactions-helper");
+const bodyParser = require("body-parser");
+const path = require("path");
+const pug = require("pug");
+const express = require("express");
+const session = require("express-session");
+const async = require("async");
+const dotenv = require("dotenv");
 const result = dotenv.config();
-const Client = require('coinbase').Client;
-const ExpressOIDC = require('@okta/oidc-middleware').ExpressOIDC;
+const Client = require("coinbase").Client;
+const ExpressOIDC = require("@okta/oidc-middleware").ExpressOIDC;
 
 if (result.error) {
     throw result.error;
@@ -22,29 +22,29 @@ const OKTA_ISSUER_URI = process.env.OKTA_ISSUER_URI;
 const OKTA_CLIENT_ID = process.env.OKTA_CLIENT_ID;
 const OKTA_CLIENT_SECRET = process.env.OKTA_CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
-const PORT = process.env.PORT || '3000';
+const PORT = process.env.PORT || "3000";
 const SECRET = process.env.SECRET;
 const client = new Client({
     apiKey: process.env.COINBASE_APIKEY_ID,
     apiSecret: process.env.COINBASE_APIKEY_SECRET,
-    'version': '2018-03-31'
+    "version": "2018-03-31"
 });
 
 let account;
 var transactions;
 
 let app = express();
-let db = require('./models');
+let db = require("./models");
 
 // App settings
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, 'views'));
+app.set("view engine", "pug");
+// app.set("views", path.join(__dirname, "views"));
 
 //App middleware
-app.use("/public", express.static('public'));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use("/public", express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(session({
     cookie: {httpOnly: true},
@@ -59,38 +59,38 @@ let oidc = new ExpressOIDC({
     redirect_uri: REDIRECT_URI,
     routes: {
         callback: {
-            defaultRedirect: '/dashboard'
+            defaultRedirect: "/dashboard"
         }
     },
-    scope: 'openid profile'
+    scope: "openid profile"
 });
 
 app.use(oidc.router);
 
 // App routes
-// require('./routes/api-accounts-routes.js')(app);
-// require('./routes/api-transactions-routes.js')(app, client, oidc);
+// require("./routes/api-accounts-routes.js")(app);
+// require("./routes/api-transactions-routes.js")(app, client, oidc);
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
     res.render("index");
 });
 
-app.get('/dashboard', oidc.ensureAuthenticated(), (req, res) => {
+app.get("/dashboard", oidc.ensureAuthenticated(), (req, res) => {
     res.render("dashboard", {
         transactions: transactions
     });
 });
 
-app.post('/dashboard', oidc.ensureAuthenticated(), (req, res) => {
+app.post("/dashboard", oidc.ensureAuthenticated(), (req, res) => {
     account.requestMoney({
         to: req.body.email,
         amount: req.body.amount,
-        currency: 'USD',
+        currency: "USD",
         description: req.body.description
     }, (err, txn) => {
         if (err) {
             console.error(err);
-            return res.render('dashboard', {
+            return res.render("dashboard", {
                 error: err
             });
         }
@@ -98,21 +98,21 @@ app.post('/dashboard', oidc.ensureAuthenticated(), (req, res) => {
         updateTransactions((err, transactions) => {
             if (err) {
                 console.error(err);
-                return res.render('dashboard', {
+                return res.render("dashboard", {
                     error: err.message
                 });
             }
 
-            return res.render('dashboard', {
+            return res.render("dashboard", {
                 transactions: transactions
-            })
+            });
         });
     });
 });
 
-app.get('/logout', (req, res) => {
+app.get("/logout", (req, res) => {
     req.logout();
-    res.redirect('/');
+    res.redirect("/");
 });
 
 // Helpers
@@ -182,7 +182,7 @@ setInterval(() => {
 }, 1000 * 60 * 60);
 
 //Server management
-oidc.on('ready', () => {
+oidc.on("ready", () => {
     // db.sequelize.sync({
     //     force: true
     // }).then(function() {
@@ -192,6 +192,6 @@ oidc.on('ready', () => {
     // });
 });
 
-oidc.on('error', err => {
+oidc.on("error", err => {
     console.error(err);
 });
