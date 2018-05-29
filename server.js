@@ -12,6 +12,8 @@ const dotenv = require("dotenv");
 const result = dotenv.config();
 const Client = require("coinbase").Client;
 const ExpressOIDC = require("@okta/oidc-middleware").ExpressOIDC;
+const passport = require("passport");
+const CoinbaseStrategy = require("passport-coinbase").Strategy;
 
 if (result.error) {
     throw result.error;
@@ -70,6 +72,8 @@ app.use(oidc.router);
 // App routes
 // require("./routes/api-accounts-routes.js")(app);
 // require("./routes/api-transactions-routes.js")(app, client, oidc);
+require("./controllers/oauth2")(app, passport, CoinbaseStrategy);
+require("./routes/api-oauth2-routes")(app, passport);
 
 app.get("/", (req, res) => {
     res.render("index");
