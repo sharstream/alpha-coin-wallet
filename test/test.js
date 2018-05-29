@@ -11,7 +11,7 @@ var server = require('../server');
 var assert = require('assert');
 var api_account_routes = require('../routes/api-accounts-routes');
 var api_transactions_routes = require('../routes/api-transactions-routes');
-var wallet = require('../controllers/transactions-helper');
+var wallet = require('../controllers/wallet-helper');
 var coinbase = require('coinbase');
 var Client = coinbase.Client;
 
