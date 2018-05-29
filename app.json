@@ -1,0 +1,16 @@
+{
+    "name": "Alpha-Coin Wallet",
+    "description": "Alpha - Coin Wallet is a Bitcoin transaction and wallet management platform.",
+    "repository": "https://github.com/sharstream/alpha-coin-wallet",
+    "logo": "https://i.imgur.com/bYSmFD6.png",
+    "keywords": [
+        "node",
+        "express",
+        "heroku"
+    ],
+    "images": "heroku/nodejs",
+    "addons": [
+        "JawsDB MySQL",
+        "Mailgun"
+    ]
+}
