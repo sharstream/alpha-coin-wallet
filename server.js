@@ -27,7 +27,7 @@ const SECRET = process.env.SECRET;
 const client = new Client({
     apiKey: process.env.COINBASE_APIKEY_ID,
     apiSecret: process.env.COINBASE_APIKEY_SECRET,
-    "version": "2018-03-31"
+    "version": "2018-05-28"
 });
 
 let account;

@@ -2,7 +2,7 @@
     "name": "Alpha-Coin Wallet",
     "description": "Alpha - Coin Wallet is a Bitcoin transaction and wallet management platform.",
     "repository": "https://github.com/sharstream/alpha-coin-wallet",
-    "logo": "https://alpha-coin-wallet.herokuapp.com/node.png",
+    "logo": "hhttps://i.imgur.com/bYSmFD6.png",
     "keywords": [
         "node",
         "express",
@@ -12,39 +12,5 @@
     "addons": [
         "JawsDB MySQL",
         "Mailgun"
-    ],
-    "env": {
-        "COINBASE_APIKEY_ID": {
-            "description": "A api key id for verifying the integrity of signed coinbase api.",
-            "generator": "secret"
-        },
-        "COINBASE_APIKEY_SECRET": {
-            "description": "A secret key for verifying the integrity of signed coinbase api.",
-            "generator": "secret"
-        },
-        "OKTA_CLIENT_ID": {
-            "description": "A client id for verifying the integrity of signed okta api.",
-            "generator": "secret"
-        },
-        "OKTA_CLIENT_SECRET": {
-            "description": "A client secret for verifying the integrity of signed okta api.",
-            "generator": "secret"
-        },
-        "OKTA_ISSUER_URI": {
-            "description": "A issuer uri for verifying the integrity of signed okta api.",
-           "generator": "secret"
-        },
-        "REDIRECT_URI": {
-            "description": "A redirect uri for verifying the integrity of callback okta api.",
-            "generator": "secret"
-        },
-        "SECRET": {
-            "description": "A secret key for verifying the integrity of signed cookies.",
-            "generator": "secret"
-        },
-        "WEB_CONCURRENCY": {
-            "description": "The number of processes to run.",
-            "value": "7"
-        }
-    }
+    ]
 }
