@@ -2,7 +2,7 @@
     "name": "Alpha-Coin Wallet",
     "description": "Alpha - Coin Wallet is a Bitcoin transaction and wallet management platform.",
     "repository": "https://github.com/sharstream/alpha-coin-wallet",
-    "logo": "hhttps://i.imgur.com/bYSmFD6.png",
+    "logo": "https://i.imgur.com/bYSmFD6.png",
     "keywords": [
         "node",
         "express",
