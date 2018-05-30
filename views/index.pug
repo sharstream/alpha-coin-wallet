@@ -1,19 +1,102 @@
-extends base.pug
+doctype html
+html(lang="en")
+head
+	title Alpha-Coin Wallet
+	meta(charset="utf-8")
+	link(rel='stylesheet' type='text/css' href='css/style.css')
+	link(href='https://fonts.googleapis.com/css?family=Tajawal' rel='stylesheet')
+	script(src='https://code.jquery.com/jquery-3.3.1.js' integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=' crossorigin='anonymous')
+	script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js", integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh", crossorigin="anonymous")
+	script(async='' defer='' src='https://buttons.github.io/buttons.js')
+	script(src='js/style.js')
 
-block body
+body
 
-    h1.text-center.head Alpha Coin Wallet Testing
-
-    .row.intro
-        .col
-        .col-8
-            .jumbotron
-                h2.text-center This is under maintenance Alpha Coin Wallet Portal
-
-                p.
-                 This is a draft portal. Use this portal to test your invoices
-                 done by using #[a(href="https://developers.coinbase.com/") Coinbase API].
-
-                p.
-                 To test click on #[a.btn.btn-primary(href="/login") login] to continue.
-        .col
+	| <div><a href="testing">Testing</a></div>
+	header
+		img.alpha_coin_logo(src='images/alpha-coin-logo.png')
+		| lpha-coin wallet
+		button.display_login_modal Log In
+	.application_container
+		.navigation_container
+			label.username_label username
+			button.nav_button.first.nav_wallet_keys Wallet Keys
+			button.nav_button.nav_transaction_history Transaction History
+			button.nav_button.nav_crypto_charts Crypto Charts
+			button.nav_button.last.nav_trade_bitcoin Trade Bitcoin
+			p.about_section
+				b What is Alpha-Coin Wallet?
+				br
+				br
+				| Alpha-Coin Wallet is a cryptocurrency trading, management, and monitoring platform designed for simplicity with ease-of-use in mind
+				br
+				br
+				| If you have any questions, you can contact us at
+				a.mail_to_link(href='mailto:alphacoinwallet@gmail.com') alphacoinwallet@gmail.com
+				br
+				br
+				br
+				a.github-button(href='https://github.com/sharstream/alpha-coin-wallet/fork' data-size='large' aria-label='Fork sharstream/alpha-coin-wallet on GitHub') Fork us on GitHub
+		.content_container
+			.wallet_keys_container
+				.wallet_keys_options
+					p.key_copied Click to Copy
+					button.new_wallet_key New Wallet Key
+				ul.list_of_wallet_keys
+					li.wallet_key_entry
+						p.wallet_name
+							| Bitcoin
+						p.wallet_key
+							| M9873D7AC6487DC2FB6A577G9E3389WJ95321030F1261F20BDN7FCJK3A7332QW
+						input(type='text' value='M9873D7AC6487DC2FB6A577G9E3389WJ95321030F1261F20BDN7FCJK3A7332QW')
+					li.wallet_key_entry
+						p.wallet_name
+							| Coinbase
+						p.wallet_key
+							| E9873D79C6D87DC0FB6A5778633389F4453213303DA61F20BD67FC233AA33262
+						input(type='text' value='E9873D79C6D87DC0FB6A5778633389F4453213303DA61F20BD67FC233AA33262')
+			.trade_bitcoin_container
+				block body
+			.transaction_history_container
+				block body
+			.crypto_charts_container
+				script(type='text/javascript').
+					baseUrl = "https://widgets.cryptocompare.com/";
+					var scripts = document.getElementsByTagName("script");
+					var embedder = scripts[ scripts.length - 1 ];
+					var cccTheme = {"General":{"background":"","borderWidth":"0","borderColor":"white","borderRadius":"1px"},"Header":{"background":"#d9aa9a","color":"white","displayFollowers":false},"Data":{"priceColor":"darkgrey","infoLabelColor":"darkgrey","infoValueColor":"darkgrey"},"Chart":{"animation":true,"fillColor":"#d9aa9a","borderColor":"white"},"Trend":{"colorUp":"#55aaed","colorDown":"#d9aa9a"}};
+					(function (){
+					var appName = encodeURIComponent(window.location.hostname);
+					if(appName==""){appName="local";}
+					var s = document.createElement("script");
+					s.type = "text/javascript";
+					s.async = true;
+					var theUrl = baseUrl+'serve/v1/coin/chart?fsym=BTC&tsym=USD';
+					s.src = theUrl + ( theUrl.indexOf("?") >= 0 ? "&" : "?") + "app=" + appName;
+					embedder.parentNode.appendChild(s);
+					})();
+			//
+				meh
+				<div class="pagination_container">
+				<button class="pagination_button nav_wallet_keys" type="radio"></button>
+				<button class="pagination_button nav_transaction_history" type="radio"></button>
+				<button class="pagination_button nav_trade_bitcoin" type="radio"></button>
+				<button class="pagination_button nav_crypto_charts" type="radio"></button>
+				</div>
+	.login_modal
+		.login_container
+			img.close_modal(src='images/close_modal.png')
+			.modal_container
+				input.username_input(placeholder='Existing User ')
+				input.password_input(type='password' placeholder='Password ')
+				input.confirm_password_input(type='password' placeholder='Confirm Password ')
+				.login_buttons
+					button.type_of_user_button New User
+					button.login_button Log In
+	.new_wallet_key_modal
+		.new_wallet_key_container
+			img.close_modal(src='images/close_modal.png')
+			.modal_container
+				input.wallet_name_input(placeholder='New Wallet Name ')
+				input.wallet_key_input(placeholder='New Wallet Key ')
+				button.add_wallet_key_button Add Key
