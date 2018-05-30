@@ -40,3 +40,430 @@ h2 {
     color: red;
     font-weight: bold;
 }
+
+* {
+    font-family: 'Tajawal', sans-serif;
+    outline: none;
+    transition: all 0.15s ease-in-out;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    overflow-x: hidden;
+    /* overflow-y: hidden; */
+}
+
+header {
+    width: 100%;
+    background: #d9aa9a;
+    color: white;
+    padding: 10px 5% 2.5px 5%;
+    font-size: 1.75em;
+}
+
+p {
+    color: darkgrey;
+    padding: 25px;
+}
+
+b {
+    font-size: 20px;
+    color: #d9aa9a;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+li p {
+    margin: 0;
+    padding: 15px 25px 7.5px 25px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 0.75em;
+    width: -webkit-fill-available;
+}
+
+li input {
+    background: white;
+    border: none;
+    width: -webkit-fill-available;
+    font-size: 1em;
+    text-align: center;
+    color: lightgrey;
+    padding: 25px;
+    position: fixed;
+    margin-top: -1000%;
+}
+
+li:hover {
+    background: #e6e2e6 !important;
+    cursor: pointer;
+}
+
+footer {
+    width: 100%;
+    background: #d9aa9a;
+    opacity: 0.75;
+    color: white;
+    padding: 10px 100px 2.5px;
+    font-size: 1.75em;
+    text-shadow: 0 1px 0 rgba(00, 00, 00, 0.25);
+}
+
+.alpha_coin_logo {
+    width: 25px;
+    height: 20px;
+    margin-right: -5px;
+}
+
+.application_container {
+    margin: 5%;
+    display: inline-flex;
+    width: 100%;
+}
+
+.navigation_container {
+    display: grid;
+    width: 35%;
+    height: 100%;
+    margin-right: 5%;
+}
+
+.pagination_button:hover {
+    background: #d9aa9a !important;
+    border-color: #d9aa9a !important;
+    cursor: pointer;
+}
+
+.nav_button {
+    background: white;
+    padding: 15px 0 7.5px 50px;
+    font-size: 24px;
+    text-align: left;
+    color: lightgrey;
+    border: none;
+    border-left: 1px solid #d9aa9a;
+    border-right: 1px solid #d9aa9a;
+    text-shadow: none;
+    max-height: 50px;
+}
+
+.nav_button:hover {
+    background: #d9aa9a !important;
+    border-color: #d9aa9a !important;
+    color: white !important;
+    text-shadow: 0 1px 0 rgba(00, 00, 00, 0.25);
+    cursor: pointer;
+}
+
+.username_label {
+    background: #998999;
+    opacity: 0.25;
+    padding: 10px 0 2.5px 50px;
+    text-align: left;
+    color: white;
+    font-size: 1.75em;
+    text-shadow: 0 1px 0 rgba(00, 00, 00, 0.25);
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 25px;
+}
+
+.nav_wallet_keys {
+    background: rgb(153, 137, 153);
+    border-color: rgb(153, 137, 153);
+    color: white;
+}
+
+.nav_transaction_history {}
+
+.nav_crypto_charts {}
+
+.nav_trade_bitcoin {}
+
+.about_section {}
+
+.mail_to_link {
+    text-decoration: none;
+    color: #d9aa9a;
+}
+
+.mail_to_link:hover {
+    opacity: 0.25;
+}
+
+.content_container {
+    background: white;
+    border: 1px solid #d9aa9a;
+    width: 50%;
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.content_container div {}
+
+.wallet_keys_container {
+    opacity: 1;
+}
+
+.wallet_keys_options,
+transaction_history_container {
+    display: inline-flex;
+    background: #d9aa9a;
+    width: 100%;
+}
+
+.key_copied {
+    margin: 0 10px;
+    padding: 12.5px 0 10px 10px;
+    max-height: 50px;
+    color: white;
+    width: 100%;
+    text-align: right;
+}
+
+.new_wallet_key {
+    background: white;
+    border: 1px solid #d9aa9a;
+    padding: 5px 10px 0 10px;
+    color: #d9aa9a;
+    text-align: right;
+    border-radius: 5px;
+    position: absolute;
+    height: 30px;
+    margin: 5px;
+    font-size: 1em;
+}
+
+.new_wallet_key:hover {
+    background: #998999 !important;
+    border-color: #998999 !important;
+    color: white;
+    text-shadow: 0 1px 0 rgba(00, 00, 00, 0.25);
+    cursor: pointer;
+}
+
+.transaction_history_container {
+    opacity: 0;
+}
+
+.trade_bitcoin_container {
+    opacity: 0;
+}
+
+.crypto_charts_container {
+    transition: all 1s ease-in-out;
+    opacity: 0;
+}
+
+.pagination_container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -50px;
+}
+
+.pagination_button {
+    border-radius: 7.5px;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border: 1px solid #d9aa9a;
+    margin: 0 10px;
+}
+
+.last {
+    border-bottom: 1px solid #d9aa9a;
+    border-radius: 0 0 5px 5px;
+}
+
+.login_container,
+.new_wallet_key_container {
+    background: white;
+    border-radius: 5px;
+    width: 40%;
+    height: fit-content;
+}
+
+.display_login_modal {
+    background: white;
+    border: 1px solid #d9aa9a;
+    padding: 7.5px 12.5px 2.5px 12.5px;
+    font-size: 0.5em;
+    color: #d9aa9a;
+    text-align: right;
+    border-radius: 5px;
+    position: absolute;
+    right: 5%;
+    height: 30px;
+    margin: -2.5px 0 0 0;
+}
+
+.display_login_modal:hover {
+    background: #998999 !important;
+    border-color: #998999 !important;
+    color: white;
+    text-shadow: 0 1px 0 rgba(00, 00, 00, 0.25);
+    cursor: pointer;
+}
+
+.login_modal,
+.new_wallet_key_modal {
+    z-index: -1;
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    opacity: 0;
+    padding: 10% 0 0 0;
+    justify-content: center;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: rgba(00, 00, 00, 0.25);
+}
+
+.close_modal {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    top: 25px;
+    left: 25px;
+    opacity: 0.5;
+}
+
+.close_modal:hover {
+    cursor: pointer;
+    opacity: 0.1;
+}
+
+.modal_container {
+    padding: 50px;
+    display: grid;
+}
+
+.username_input,
+.password_input,
+.confirm_password_input,
+.wallet_name_input,
+.wallet_key_input {
+    height: 25px;
+    padding: 10px 10px 2.5px 10px;
+    margin-bottom: 25px;
+    font-size: 24px;
+    text-align: left;
+    caret-color: transparent;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    box-shadow: 0 2px 0 rgba(00, 00, 00, 0);
+}
+
+.username_input:focus,
+.password_input:focus,
+.confirm_password_input:focus,
+.wallet_name_input:focus,
+.wallet_key_input:focus {
+    box-shadow: 0 2px 0 lightgrey;
+}
+
+.confirm_password_input {
+    display: none;
+}
+
+.login_buttons {
+    display: inline-flex;
+}
+
+.login_button,
+.type_of_user_button {
+    background: white;
+    border: 1px solid #d9aa9a;
+    padding: 10px 12.5px 2.5px 12.5px;
+    font-size: 1em;
+    color: #d9aa9a;
+    text-align: center;
+    border-radius: 5px;
+    margin: 50px 5% 0 5%;
+    width: 40%;
+}
+
+.add_wallet_key_button {
+    background: #998999;
+    border: 1px solid #998999;
+    padding: 10px 12.5px 2.5px 12.5px;
+    font-size: 1em;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    margin: 50px 0 0 0;
+    width: 100%;
+}
+
+.login_button:hover,
+.type_of_user_button:hover,
+.add_wallet_key_button:hover {
+    background: #d9aa9a !important;
+    color: white;
+    text-shadow: 0 1px 0 rgba(00, 00, 00, 0.25);
+    cursor: pointer;
+}
+
+.type_of_user_button,
+.add_wallet_key_button {
+    background: rgb(153, 137, 153);
+    border-color: rgb(153, 137, 153);
+    color: white;
+}
+
+.type_of_user_button:hover,
+.add_wallet_key_button:hover {
+    border-color: #d9aa9a !important;
+}
+
+.username_input,
+.password_input,
+.confirm_password_input,
+.wallet_name_input,
+.wallet_key_input {
+    color: lightgrey;
+}
+
+.username_input:focus,
+.password_input:focus,
+.confirm_password_input:focus,
+.wallet_name_input:focus,
+.wallet_key_input:focus {
+    color: lightgrey;
+}
+
+.wallet_key_entry {
+    display: flex;
+    width: 100%;
+}
+
+.wallet_name {
+    text-align: left;
+}
+
+::placeholder {
+    color: lightgrey;
+    text-align: right;
+}
+
+:-ms-input-placeholder {
+    color: lightgrey;
+    text-align: right;
+}
+
+::-ms-input-placeholder {
+    color: lightgrey;
+    text-align: right;
+}
