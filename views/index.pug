@@ -11,12 +11,12 @@ head
 	script(src='js/style.js')
 
 body
-
-	| <div><a href="testing">Testing</a></div>
 	header
 		img.alpha_coin_logo(src='images/alpha-coin-logo.png')
 		| lpha-coin wallet
+		button.display_home_modal Home
 		button.display_login_modal Log In
+		button.display_logout_modal Logout
 	.application_container
 		.navigation_container
 			label.username_label username
@@ -55,10 +55,10 @@ body
 						p.wallet_key
 							| E9873D79C6D87DC0FB6A5778633389F4453213303DA61F20BD67FC233AA33262
 						input(type='text' value='E9873D79C6D87DC0FB6A5778633389F4453213303DA61F20BD67FC233AA33262')
-			.trade_bitcoin_container
-				block body
 			.transaction_history_container
-				block body
+				include dashboard.pug
+			.trade_bitcoin_container
+				include invoice.pug
 			.crypto_charts_container
 				script(type='text/javascript').
 					baseUrl = "https://widgets.cryptocompare.com/";

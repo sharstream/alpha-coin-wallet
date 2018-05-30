@@ -80,9 +80,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/dashboard", oidc.ensureAuthenticated(), (req, res) => {
-    res.render("dashboard", {
+    res.render("index", {
         transactions: transactions
     });
+});
+
+app.get("/invoice", oidc.ensureAuthenticated(), (req, res) => {
+    res.render("invoice");
 });
 
 app.post("/dashboard", oidc.ensureAuthenticated(), (req, res) => {
