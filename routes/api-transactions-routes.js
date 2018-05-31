@@ -2,7 +2,7 @@
 
 let transactions;
 module.exports = function (app, client, oidc) {
-    transactions = require('../controllers/transactions-helper')(client, transactions)
+    require('../controllers/wallet-helper')(client, transactions)
 
     app.get('/', (req, res) => {
         res.render('index');
@@ -42,5 +42,13 @@ module.exports = function (app, client, oidc) {
     app.get('/logout', (req, res) => {
         req.logout();
         res.redirect('/');
+    });
+
+    app.delete('/dashboard', (req, res) => {
+
+    });
+
+    app.put('/dashboard', (req, res) => {
+
     });
 };
