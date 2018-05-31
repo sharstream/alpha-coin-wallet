@@ -8,9 +8,5 @@
         "express",
         "heroku"
     ],
-    "images": "heroku/nodejs",
-    "addons": [
-        "JawsDB MySQL",
-        "Mailgun"
-    ]
+    "images": "heroku/nodejs"
 }
