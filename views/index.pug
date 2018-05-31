@@ -14,16 +14,18 @@ body
 	header
 		img.alpha_coin_logo(src='images/alpha-coin-logo.png')
 		| lpha-coin wallet
-		button.display_home_modal Home
-		button.display_login_modal Log In
+		//- button.display_login_modal Log In
 		button.display_logout_modal Logout
+		button.display_signout_modal Sign Up
+	a(href="/login")
+		button(type="button").display_login_modal Sign In
 	.application_container
 		.navigation_container
 			label.username_label username
 			button.nav_button.first.nav_wallet_keys Wallet Keys
 			button.nav_button.nav_transaction_history Transaction History
 			button.nav_button.nav_crypto_charts Crypto Charts
-			button.nav_button.last.nav_trade_bitcoin Trade Bitcoin
+			button.nav_button.last.nav_trade_bitcoin Create Invoice
 			p.about_section
 				b What is Alpha-Coin Wallet?
 				br
@@ -42,19 +44,7 @@ body
 				.wallet_keys_options
 					p.key_copied Click to Copy
 					button.new_wallet_key New Wallet Key
-				ul.list_of_wallet_keys
-					li.wallet_key_entry
-						p.wallet_name
-							| Bitcoin
-						p.wallet_key
-							| M9873D7AC6487DC2FB6A577G9E3389WJ95321030F1261F20BDN7FCJK3A7332QW
-						input(type='text' value='M9873D7AC6487DC2FB6A577G9E3389WJ95321030F1261F20BDN7FCJK3A7332QW')
-					li.wallet_key_entry
-						p.wallet_name
-							| Coinbase
-						p.wallet_key
-							| E9873D79C6D87DC0FB6A5778633389F4453213303DA61F20BD67FC233AA33262
-						input(type='text' value='E9873D79C6D87DC0FB6A5778633389F4453213303DA61F20BD67FC233AA33262')
+					include address.pug
 			.transaction_history_container
 				include dashboard.pug
 			.trade_bitcoin_container

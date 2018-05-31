@@ -34,6 +34,7 @@ const client = new Client({
 
 let account;
 var transactions;
+var addresses;
 
 let app = express();
 let db = require("./models");
@@ -85,6 +86,12 @@ app.get("/dashboard", oidc.ensureAuthenticated(), (req, res) => {
     });
 });
 
+app.get('/address', oidc.ensureAuthenticated(), (req, res) => {
+    res.render("index", {
+        addresses: addresses
+    });
+});
+
 app.get("/invoice", oidc.ensureAuthenticated(), (req, res) => {
     res.render("invoice");
 });
@@ -116,6 +123,7 @@ app.post("/dashboard", oidc.ensureAuthenticated(), (req, res) => {
             });
         });
     });
+    res.render("index");
 });
 
 app.get("/logout", (req, res) => {
@@ -157,7 +165,37 @@ function updateTransactions(cb) {
             cb(null, transactions);
         }
     );
-}
+};
+
+function updateAddress(cb) {
+    addresses = [];
+    let pagination = null;
+
+    async.doWhilst(
+        function (callback) {
+            account.getAddresses(pagination, (err, arr, page) => {
+                if (err) {
+                    return callback(err);
+                }
+                pagination = page.next_uri ? page : false;
+                arr.forEach( add => {
+                    addresses.push(add);
+                });
+                callback();
+            });
+        },
+        function() {
+            return pagination ? true : false;
+        },
+        function(err) {
+            if (err) {
+                return cb(err);
+            }
+
+            cb(null, addresses);
+        }
+    );
+};
 
 // Startup jobs
 client.getAccounts({}, (err, accounts) => {
@@ -172,6 +210,12 @@ client.getAccounts({}, (err, accounts) => {
 
             console.log("Downloading initial list of transactions.");
             updateTransactions(err => {
+                if (err) {
+                    console.error(err);
+                }
+            });
+            console.log("Downloading inital list of addresses.");
+            updateAddress(err => {
                 if (err) {
                     console.error(err);
                 }

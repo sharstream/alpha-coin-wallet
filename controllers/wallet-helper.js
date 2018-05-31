@@ -77,6 +77,24 @@ module.exports = function(client, transactions){
         });
     };
 
+    function getAddress(){
+        //todo
+        client.getAccount({}, function (err, account) {
+            account.getAddresses(function (err, addresses) {
+                console.log(addresses);
+            });
+        });
+    };
+
+    function createAddress() {
+        //todo
+        client.getAccount({}, function (err, account) {
+            account.createAddress(null, function (err, address) {
+                console.log(address);
+            });
+        });
+    };
+
     function newWallet(req){
         //todo
         client.createAccount({
@@ -109,6 +127,14 @@ module.exports = function(client, transactions){
     };
 
     function receiveMoney(req){
+        //todo
+    };
+
+    function deleteTransaction(){
+        //todo
+    };
+
+    function editTransaction(){
         //todo
     };
 
