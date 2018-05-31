@@ -9,7 +9,7 @@ if (process.env.JAWSDB_URL) {
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'wallet_db'
+        database: 'alphaCoinWalletDb'
     });
 };
 
