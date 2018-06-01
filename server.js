@@ -1,5 +1,6 @@
 "use strict";
 
+require('dotenv').config({silent: true});
 // const account = require("./controllers/accounts-helper");
 // const transaction = require("./controllers/transactions-helper");
 const bodyParser = require("body-parser");
@@ -8,16 +9,16 @@ const pug = require("pug");
 const express = require("express");
 const session = require("express-session");
 const async = require("async");
-const dotenv = require("dotenv");
-const result = dotenv.config();
+// const dotenv = require("dotenv");
+// const result = dotenv.config();
 const Client = require("coinbase").Client;
 const ExpressOIDC = require("@okta/oidc-middleware").ExpressOIDC;
 const passport = require("passport");
 const CoinbaseStrategy = require("passport-coinbase").Strategy;
 
-if (result.error) {
-    throw result.error;
-}
+// if (result.error) {
+//     throw result.error;
+// }
 
 // Globals
 const OKTA_ISSUER_URI = process.env.OKTA_ISSUER_URI;
@@ -43,7 +44,7 @@ let db = require("./models");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.set("view engine", "pug");
-// app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "views"));
 
 //App middleware
 app.use("/public", express.static("public"));

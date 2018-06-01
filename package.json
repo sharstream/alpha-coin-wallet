@@ -4,6 +4,12 @@
     "description": "Bitcoin wallet initial config and node js installation",
     "main": "server.js",
     "directories": {
+        "config": "config",
+        "controllers": "controllers",
+        "db": "db",
+        "models": "models",
+        "public": "public",
+        "routes": "routes",
         "test": "test"
     },
     "scripts": {
@@ -52,5 +58,8 @@
         "pug": "^2.0.3",
         "sequelize": "^4.37.9",
         "sequelize-cli": "^4.0.0"
+    },
+    "autoload": {
+        "App": "./app"
     }
 }
