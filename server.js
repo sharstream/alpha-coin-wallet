@@ -1,24 +1,17 @@
 "use strict";
 
 require('dotenv').config({silent: true});
-// const account = require("./controllers/accounts-helper");
-// const transaction = require("./controllers/transactions-helper");
 const bodyParser = require("body-parser");
 const path = require("path");
 const pug = require("pug");
 const express = require("express");
 const session = require("express-session");
 const async = require("async");
-// const dotenv = require("dotenv");
-// const result = dotenv.config();
 const Client = require("coinbase").Client;
 const ExpressOIDC = require("@okta/oidc-middleware").ExpressOIDC;
 const passport = require("passport");
 const CoinbaseStrategy = require("passport-coinbase").Strategy;
-
-// if (result.error) {
-//     throw result.error;
-// }
+const router = express.Router();
 
 // Globals
 const OKTA_ISSUER_URI = process.env.OKTA_ISSUER_URI;
@@ -74,21 +67,24 @@ app.use(oidc.router);
 // App routes
 // require("./routes/api-accounts-routes.js")(app);
 // require("./routes/api-transactions-routes.js")(app, client, oidc);
-require("./controllers/oauth2")(app, passport, CoinbaseStrategy);
-require("./routes/api-oauth2-routes")(app, passport);
+// require("./controllers/oauth2")(app, passport, CoinbaseStrategy);
+// require("./routes/api-oauth2-routes")(app, passport);
 
 app.get("/", (req, res) => {
     res.render("index");
 });
 
-app.get("/dashboard", oidc.ensureAuthenticated(), (req, res) => {
+app.get('/dashboard', (req, res, next) => {
     res.render("index", {
+        addresses: addresses,
         transactions: transactions
     });
+    next();
 });
 
 app.get('/address', oidc.ensureAuthenticated(), (req, res) => {
     res.render("index", {
+        transactions: transactions,
         addresses: addresses
     });
 });

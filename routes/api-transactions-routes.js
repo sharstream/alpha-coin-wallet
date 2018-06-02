@@ -1,20 +1,21 @@
 // api transactions routes
-
+var express = require('express');
+var router = express.Router();
 let transactions;
-module.exports = function (app, client, oidc) {
+module.exports = function (client, oidc) {
     require('../controllers/wallet-helper')(client, transactions)
 
-    app.get('/', (req, res) => {
+    router.get('/', (req, res) => {
         res.render('index');
     });
 
-    app.get('/dashboard', oidc.ensureAuthenticated(), (req, res) => {
+    router.get('/dashboard', oidc.ensureAuthenticated(), (req, res) => {
         res.render('dashboard', {
             transactions: transactions
         });
     });
 
-    app.post('/dashboard', oidc.ensureAuthenticated(), (req, res) => {
+    router.post('/dashboard', oidc.ensureAuthenticated(), (req, res) => {
         account.requestMoney({
             to: req.body.email,
             amount: req.body.amount,
@@ -39,16 +40,16 @@ module.exports = function (app, client, oidc) {
         });
     });
 
-    app.get('/logout', (req, res) => {
+    router.get('/logout', (req, res) => {
         req.logout();
         res.redirect('/');
     });
 
-    app.delete('/dashboard', (req, res) => {
+    router.delete('/dashboard', (req, res) => {
 
     });
 
-    app.put('/dashboard', (req, res) => {
+    router.put('/dashboard', (req, res) => {
 
     });
 };

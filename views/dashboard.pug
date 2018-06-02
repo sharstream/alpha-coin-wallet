@@ -24,7 +24,7 @@ block body
                         td #{transaction.id}
                         td #{new Date(transaction.created_at).toLocaleDateString("en-US", { hour12: false, year: "numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", second:"2-digit" })}
                         td #{transaction.status}
-                        td #{transaction.to.email}
+                        //- td #{transaction.to.email}
                         td #{transaction.description}
                         td #{transaction.native_amount.amount}
             button.btn.btn-primary(type="submit") Edit
