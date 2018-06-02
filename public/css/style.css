@@ -63,6 +63,10 @@ header {
     font-size: 1.75em;
 }
 
+.create-invoice {
+    margin-left: 40px;
+}
+
 p {
     color: darkgrey;
     padding: 25px;
@@ -238,7 +242,8 @@ transaction_history_container {
     text-align: right;
 }
 
-.new_wallet_key {
+.new_wallet_key,
+.cancel_wallet_key {
     background: white;
     border: 1px solid #d9aa9a;
     padding: 5px 10px 0 10px;
@@ -249,6 +254,10 @@ transaction_history_container {
     height: 30px;
     margin: 5px;
     font-size: 1em;
+}
+
+.cancel_wallet_key {
+    margin-left: 121px;
 }
 
 .edit_transaction,
@@ -332,6 +341,11 @@ transaction_history_container {
     right: 5%;
     height: 30px;
     margin: -2.5px 0 0 0;
+}
+
+.transactionchecklist,
+.walletkeychecklist {
+    margin-left: 10px;
 }
 
 .display_logout_modal {

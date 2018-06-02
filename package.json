@@ -41,9 +41,7 @@
         "chai": "^4.1.2",
         "chai-http": "^4.0.0",
         "coinbase": "^2.0.8",
-        "dot-env": "0.0.1",
         "dotenv": "^5.0.1",
-        "ejs": "^2.6.1",
         "express": "^4.16.3",
         "express-session": "^1.15.6",
         "generate": "^0.14.0",
@@ -56,8 +54,7 @@
         "passport": "^0.4.0",
         "passport-coinbase": "^0.1.2",
         "pug": "^2.0.3",
-        "sequelize": "^4.37.9",
-        "sequelize-cli": "^4.0.0"
+        "sequelize": "^4.37.10"
     },
     "autoload": {
         "App": "./app"

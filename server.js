@@ -227,7 +227,12 @@ setInterval(() => {
         if (err) {
             console.error(err);
         }
-    })
+    });
+    updateAddress( err => {
+        if (err) {
+            console.error(err);
+        }
+    });
 }, 1000 * 60 * 60);
 
 //Server management
