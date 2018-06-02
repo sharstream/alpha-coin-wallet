@@ -3,8 +3,10 @@ html(lang="en")
 head
 	title Alpha-Coin Wallet
 	meta(charset="utf-8")
+	link(rel="stylesheet", href="https://bootswatch.com/4/sketchy/bootstrap.min.css")
 	link(rel='stylesheet' type='text/css' href='css/style.css')
 	link(href='https://fonts.googleapis.com/css?family=Tajawal' rel='stylesheet')
+
 	script(src='https://code.jquery.com/jquery-3.3.1.js' integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=' crossorigin='anonymous')
 	script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js", integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh", crossorigin="anonymous")
 	script(async='' defer='' src='https://buttons.github.io/buttons.js')
@@ -15,10 +17,10 @@ body
 		img.alpha_coin_logo(src='images/alpha-coin-logo.png')
 		| lpha-coin wallet
 		//- button.display_login_modal Log In
-		button.display_logout_modal Logout
-		button.display_signout_modal Sign Up
 	a(href="/login")
 		button(type="button").display_login_modal Sign In
+		button.display_logout_modal Logout
+		button.display_signout_modal Sign Up
 	.application_container
 		.navigation_container
 			label.username_label username
@@ -44,8 +46,14 @@ body
 				.wallet_keys_options
 					p.key_copied Click to Copy
 					button.new_wallet_key New Wallet Key
+				.list_of_wallet_keys
 					include address.pug
 			.transaction_history_container
+				.transaction_options
+					p.key_copied Click to Copy
+					button.edit_transaction Edit
+					button.cancel_transaction Cancel
+				.list_of_transaction
 				include dashboard.pug
 			.trade_bitcoin_container
 				include invoice.pug

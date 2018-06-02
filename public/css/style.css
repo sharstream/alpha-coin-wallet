@@ -222,6 +222,13 @@ transaction_history_container {
     width: 100%;
 }
 
+.transaction_options {
+    display: inline-flex;
+    /* display: inline-block; */
+    background: #d9aa9a;
+    width: 100%;
+}
+
 .key_copied {
     margin: 0 10px;
     padding: 12.5px 0 10px 10px;
@@ -242,6 +249,24 @@ transaction_history_container {
     height: 30px;
     margin: 5px;
     font-size: 1em;
+}
+
+.edit_transaction,
+.cancel_transaction {
+    background: white;
+    border: 1px solid #d9aa9a;
+    padding: 5px 10px 0 10px;
+    color: #d9aa9a;
+    text-align: right;
+    border-radius: 5px;
+    position: absolute;
+    height: 30px;
+    margin: 5px;
+    font-size: 1em;
+}
+
+.cancel_transaction {
+    margin-left: 55px;
 }
 
 .new_wallet_key:hover {
@@ -293,7 +318,9 @@ transaction_history_container {
     height: fit-content;
 }
 
-.display_login_modal {
+.display_login_modal,
+.display_logout_modal,
+.display_signout_modal {
     background: white;
     border: 1px solid #d9aa9a;
     padding: 7.5px 12.5px 2.5px 12.5px;
@@ -305,6 +332,14 @@ transaction_history_container {
     right: 5%;
     height: 30px;
     margin: -2.5px 0 0 0;
+}
+
+.display_logout_modal {
+    margin-right: 115px;
+}
+
+.display_login_modal {
+    margin-right: 58px;
 }
 
 .display_login_modal:hover {
