@@ -102,7 +102,7 @@ app.post("/dashboard", oidc.ensureAuthenticated(), (req, res) => {
     }, (err, txn) => {
         if (err) {
             console.error(err);
-            return res.render("dashboard", {
+            return res.render("index", {
                 error: err
             });
         }
@@ -110,17 +110,16 @@ app.post("/dashboard", oidc.ensureAuthenticated(), (req, res) => {
         updateTransactions((err, transactions) => {
             if (err) {
                 console.error(err);
-                return res.render("dashboard", {
+                return res.render("index", {
                     error: err.message
                 });
             }
 
-            return res.render("dashboard", {
+            return res.render("index", {
                 transactions: transactions
             });
         });
     });
-    res.render("index");
 });
 
 app.get("/logout", (req, res) => {
