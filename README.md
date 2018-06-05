@@ -21,15 +21,6 @@ Overview of the application
 
 ## Technologies
 Technologies that are utilized to build the application
-  [Express.js]: http://expressjs.com/ "Express.js"
-  [Bootstrap]: http://getbootstrap.com/ "Twitter Bootstrap"
-  [Sketchy]: https://bootswatch.com/sketchy/ "Sketchy Bootstrap Theme"
-  [coinbase-node]: https://github.com/coinbase/coinbase-node "Coinbase Node Library on Github"
-  [sorttable]: https://kryogenix.org/code/browser/sorttable/ "sorttable"
-  [pug.js]: https://pugjs.org/api/getting-started.html "Pug.js"
-  [oidc-middleware]: https://github.com/okta/okta-oidc-js/tree/master/packages/oidc-middleware "oidc-middleware by Okta on Github"
-  [website image]: /public/images/chat.png "Screenshot"
-  [website image2]: /static/images/wallet.png "Screenshot"
 ![Overview](https://github.com/radhikabgupta/ReadMeInfoProj2/blob/master/assets/technologies.jpg)
 
 ## Authentication
