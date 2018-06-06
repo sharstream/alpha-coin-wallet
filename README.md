@@ -20,7 +20,7 @@ Overview of the application
 ![Overview](https://github.com/radhikabgupta/ReadMeInfoProj2/blob/master/assets/Overview.jpg)
 
 ## Technologies
-Technologies that are utilized to build the application
+Technologies that are utilized to build the application:
 ![Overview](https://github.com/radhikabgupta/ReadMeInfoProj2/blob/master/assets/technologies.jpg)
 
 ## Authentication
